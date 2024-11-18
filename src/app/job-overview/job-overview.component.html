@@ -1,7 +1,7 @@
 <div class="container">
   @for (job of jobs(); track job.id) {
-    <div [id]="'job-'+job.id" class="row">
-      <div class="col-sm-1"><img class="card small" [id]="job.id" [src]="job.companyLogo" alt=""/></div>
+    <div [id]="job.id | prefix:'job-'" class="row">
+      <div class="col-sm-1"><img class="card small" [id]="job.id | prefix:'image-'" [src]="job.companyLogo" alt=""/></div>
       <div class="col-sm-6">
         <h2 >{{ job.title }}</h2>
         <div class="row">
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-sm-1">
-        <span [id]="'star-'+job.id" class="icon-star"></span>
+        <span [id]="job.id | prefix:'star-'" class="icon-star"></span>
       </div>
     </div>
   }

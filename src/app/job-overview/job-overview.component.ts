@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { Job, JobsService } from '../jobs.service';
+import { PrefixPipe } from '../prefix-id.pipe';
 
 @Component({
   selector: 'js-job-overview',
   standalone: true,
-  imports: [],
+  imports: [
+    PrefixPipe
+  ],
   templateUrl: './job-overview.component.html',
   styles: '',
   changeDetection: ChangeDetectionStrategy.OnPush
