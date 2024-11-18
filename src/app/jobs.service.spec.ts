@@ -22,9 +22,9 @@ describe('JobsService', () => {
 
   it('should contain the returned jobs', () => {
     const mockJobs: Job[] = [
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
+      {id: 1, title: 'title-1', companyLogo: 'logo-1', companyName: 'company-1', reference: 'reference-1'},
+      {id: 2, title: 'title-2', companyLogo: 'logo-2', companyName: 'company-2', reference: 'reference-2'},
+      {id: 3, title: 'title-3', companyLogo: 'logo-3', companyName: 'company-3', reference: 'reference-3'},
     ];
 
     expect(service.jobs()).toEqual([]);
