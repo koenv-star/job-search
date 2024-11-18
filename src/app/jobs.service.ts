@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 
-interface Job {
+export interface Job {
   id: number
 }
 
