@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-job-overview',
+  selector: 'js-job-overview',
   standalone: true,
   imports: [],
   templateUrl: './job-overview.component.html',

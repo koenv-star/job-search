@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'js-navigation',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
