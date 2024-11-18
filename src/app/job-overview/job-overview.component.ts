@@ -6,7 +6,7 @@ import { Job, JobsService } from '../jobs.service';
   standalone: true,
   imports: [],
   templateUrl: './job-overview.component.html',
-  styleUrl: './job-overview.component.css',
+  styles: '',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JobOverviewComponent {
