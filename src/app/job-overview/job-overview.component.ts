@@ -3,13 +3,15 @@ import { Job, JobsService } from '../jobs.service';
 import { PrefixPipe } from '../prefix-id.pipe';
 import { NgClass } from '@angular/common';
 import { FavoritesService } from '../favorites.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'js-job-overview',
   standalone: true,
   imports: [
     PrefixPipe,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   templateUrl: './job-overview.component.html',
   styles: '',
