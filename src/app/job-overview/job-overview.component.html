@@ -3,14 +3,16 @@
     <div [id]="job.id | prefix:'job-'" class="row">
       <div class="col-sm-1"><img class="card small" [id]="job.id | prefix:'image-'" [src]="job.companyLogo" alt=""/></div>
       <div class="col-sm-6">
-        <h2 >{{ job.title }}</h2>
+        <h2>{{ job.title }}</h2>
         <div class="row">
           <div class="col-sm-2"><p>Company: {{ job.companyName }} </p></div>
           <div class="col-sm-4"><p>Reference: {{ job.reference }}</p></div>
         </div>
       </div>
       <div class="col-sm-1">
-        <span [id]="job.id | prefix:'star-'" class="icon-star"></span>
+        <span [ngClass]="favorites()?.get(job.id) ? 'icon-star active': 'icon-star'"
+              (click)="toggleFavorite(job.id)"
+              [id]="job.id | prefix:'star-'"></span>
       </div>
     </div>
   }
