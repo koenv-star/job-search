@@ -4,10 +4,10 @@ import { StorageService } from './storage.service';
 
 describe('FavoritesService', () => {
   let service: FavoritesService;
-  let mockStorageService: jasmine.SpyObj<StorageService<typeof FAVORITES_KEY, Map<number, boolean>>>;
+  let mockStorageService: jasmine.SpyObj<StorageService<typeof FAVORITES_KEY, number, boolean>>;
 
   beforeEach(() => {
-    mockStorageService = jasmine.createSpyObj('StorageService', ['isEmpty', 'data']);
+    mockStorageService = jasmine.createSpyObj('StorageService', ['isStorageEmpty', 'data']);
 
     service = new FavoritesService()
     service.storageService = mockStorageService
@@ -24,7 +24,7 @@ describe('FavoritesService', () => {
   it('when storage is empty, should initialize to a map with all job ids default to false', () => {
     const jobs = [{id: 1}, {id: 2}] as Job[];
 
-    mockStorageService.isEmpty.and.returnValue(true); // Mock isEmpty to return true
+    mockStorageService.isStorageEmpty.and.returnValue(true); // Mock isEmpty to return true
 
     service.initializeFavorites(jobs);
 
@@ -38,7 +38,7 @@ describe('FavoritesService', () => {
   it('when storage is not empty, should initialize to values from storage', () => {
     const jobs = [{id: 1}, {id: 2}] as Job[];
 
-    mockStorageService.isEmpty.and.returnValue(false);
+    mockStorageService.isStorageEmpty.and.returnValue(false);
     let favoritesFromStorage = new Map<number, boolean>([
       [1, true],
       [2, false]

@@ -1,20 +1,24 @@
 import { FAVORITES_KEY } from './favorites.service';
 
 
-type Keys = typeof FAVORITES_KEY
+type StorageKeys = typeof FAVORITES_KEY
 
-export class StorageService<K extends Keys, T> {
-  private readonly key: K;
+export class StorageService<storageKey extends StorageKeys, ObjectId, Object> {
+  private readonly key: storageKey;
 
-  constructor(key: K) {
+  constructor(key: storageKey) {
     this.key = key;
   }
 
-  isEmpty() {
-    return true
+  isStorageEmpty() {
+    return !localStorage.getItem(this.key)
   }
 
-  data(): T | undefined {
-    return undefined
+  data(): Map<ObjectId, Object> | undefined {
+    return this.isStorageEmpty() ? undefined : new Map(JSON.parse(localStorage.getItem(this.key)!))
+  }
+
+  set(value: Map<ObjectId, Object>): void {
+    localStorage.setItem(this.key, JSON.stringify(Array.from(value.entries())));
   }
 }
