@@ -18,7 +18,7 @@ import { FavoritesService } from '../favorites.service';
 export class JobOverviewComponent {
 
   protected jobs: Signal<Job[]> = this.jobsService.jobs
-  protected favorites: Signal<Map<number, boolean>> = this.favoritesService.favorites
+  protected favorites: Signal<Map<number, boolean> | undefined> = this.favoritesService.favorites
 
   constructor(protected jobsService: JobsService, protected favoritesService: FavoritesService) {
   }

@@ -1,4 +1,4 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { effect, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { Job } from './jobs.service';
 import { StorageService } from './storage.service';
 
@@ -10,9 +10,18 @@ const favoritesStorageService = new StorageService<typeof FAVORITES_KEY, number,
 })
 export class FavoritesService {
 
-  private readonly _favorites: WritableSignal<Map<number, boolean>> = signal(new Map<number, boolean>())
-  favorites: Signal<Map<number, boolean>> = this._favorites.asReadonly()
+  private readonly _favorites: WritableSignal<Map<number, boolean> | undefined> = signal(undefined)
+  favorites: Signal<Map<number, boolean> | undefined> = this._favorites.asReadonly()
+
   storageService = favoritesStorageService;
+
+  constructor() {
+    effect(() => {
+      if (this.favorites()) {
+        this.storageService.set(this.favorites()!)
+      }
+    });
+  }
 
   toggleFavorite(id: number): void {
     this._favorites.update(favorites => {

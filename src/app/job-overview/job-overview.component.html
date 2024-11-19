@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-sm-1">
-        <span [ngClass]="favorites().get(job.id) ? 'icon-star active': 'icon-star'"
+        <span [ngClass]="favorites()?.get(job.id) ? 'icon-star active': 'icon-star'"
               (click)="toggleFavorite(job.id)"
               [id]="job.id | prefix:'star-'"></span>
       </div>

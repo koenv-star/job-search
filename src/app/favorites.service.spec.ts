@@ -1,15 +1,17 @@
 import { FAVORITES_KEY, FavoritesService } from './favorites.service';
 import { Job } from './jobs.service';
 import { StorageService } from './storage.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('FavoritesService', () => {
   let service: FavoritesService;
   let mockStorageService: jasmine.SpyObj<StorageService<typeof FAVORITES_KEY, number, boolean>>;
 
   beforeEach(() => {
-    mockStorageService = jasmine.createSpyObj('StorageService', ['isStorageEmpty', 'data']);
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(FavoritesService);
 
-    service = new FavoritesService()
+    mockStorageService = jasmine.createSpyObj('StorageService', ['isStorageEmpty', 'data']);
     service.storageService = mockStorageService
   });
 
@@ -18,7 +20,7 @@ describe('FavoritesService', () => {
   });
 
   it('should be empty initially', () => {
-    expect(service.favorites()).toEqual(new Map());
+    expect(service.favorites()).toEqual(undefined);
   });
 
   it('when storage is empty, should initialize to a map with all job ids default to false', () => {
