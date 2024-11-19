@@ -5,6 +5,7 @@ import { Job, JobsService } from '../jobs.service';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FavoritesService } from '../favorites.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('JobOverviewComponent', () => {
   let component: JobOverviewComponent;
@@ -14,7 +15,7 @@ describe('JobOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JobOverviewComponent],
+      imports: [JobOverviewComponent, RouterTestingModule],
       providers: [
         {
           provide: JobsService, useValue: {
