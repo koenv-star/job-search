@@ -1,14 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-
-import { FavoritesService } from './favorites.service';
+import { FAVORITES_KEY, FavoritesService } from './favorites.service';
 import { Job } from './jobs.service';
+import { StorageService } from './storage.service';
 
 describe('FavoritesService', () => {
   let service: FavoritesService;
+  let mockStorageService: jasmine.SpyObj<StorageService<typeof FAVORITES_KEY, Map<number, boolean>>>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FavoritesService);
+    mockStorageService = jasmine.createSpyObj('StorageService', ['isEmpty', 'data']);
+
+    service = new FavoritesService()
+    service.storageService = mockStorageService
   });
 
   it('should be created', () => {
@@ -19,8 +21,10 @@ describe('FavoritesService', () => {
     expect(service.favorites()).toEqual(new Map());
   });
 
-  it('should initialize to map with al job ids default to false', () => {
+  it('when storage is empty, should initialize to a map with all job ids default to false', () => {
     const jobs = [{id: 1}, {id: 2}] as Job[];
+
+    mockStorageService.isEmpty.and.returnValue(true); // Mock isEmpty to return true
 
     service.initializeFavorites(jobs);
 
@@ -31,4 +35,18 @@ describe('FavoritesService', () => {
     expect(service.favorites()).toEqual(expectedMap);
   });
 
+  it('when storage is not empty, should initialize to values from storage', () => {
+    const jobs = [{id: 1}, {id: 2}] as Job[];
+
+    mockStorageService.isEmpty.and.returnValue(false);
+    let favoritesFromStorage = new Map<number, boolean>([
+      [1, true],
+      [2, false]
+    ]);
+    mockStorageService.data.and.returnValue(favoritesFromStorage);
+
+    service.initializeFavorites(jobs);
+
+    expect(service.favorites()).toEqual(favoritesFromStorage);
+  });
 });

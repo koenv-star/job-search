@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Job, JobsService } from './jobs.service';
+import { FavoritesService } from './favorites.service';
 
 describe('JobsService', () => {
   let service: JobsService;
@@ -9,7 +10,9 @@ describe('JobsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [JobsService],
+      providers: [JobsService, {
+        provide: FavoritesService, useValue: jasmine.createSpyObj('FavoritesService', ['initializeFavorites'])
+      }],
     });
 
     service = TestBed.inject(JobsService);
@@ -17,7 +20,7 @@ describe('JobsService', () => {
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Ensure no outstanding HTTP requests
+    httpTestingController.verify();
   });
 
   it('should contain the returned jobs', () => {

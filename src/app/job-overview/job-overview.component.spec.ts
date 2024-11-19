@@ -4,6 +4,7 @@ import { JobOverviewComponent } from './job-overview.component';
 import { Job, JobsService } from '../jobs.service';
 import { signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { FavoritesService } from '../favorites.service';
 
 describe('JobOverviewComponent', () => {
   let component: JobOverviewComponent;
@@ -18,6 +19,11 @@ describe('JobOverviewComponent', () => {
         {
           provide: JobsService, useValue: {
             jobs: jobs.asReadonly()
+          }
+        },
+        {
+          provide: FavoritesService, useValue: {
+            favorites: signal(new Map())
           }
         }
       ]
