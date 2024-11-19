@@ -26,7 +26,7 @@ describe('FavoritesService', () => {
   it('when storage is empty, should initialize to a map with all job ids default to false', () => {
     const jobs = [{id: 1}, {id: 2}] as Job[];
 
-    mockStorageService.isStorageEmpty.and.returnValue(true); // Mock isEmpty to return true
+    mockStorageService.isStorageEmpty.and.returnValue(true);
 
     service.initializeFavorites(jobs);
 
