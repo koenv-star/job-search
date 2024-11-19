@@ -1,1 +1,21 @@
-<p>job-detail works!</p>
+<button  (click)="back()">Back</button>
+<div>
+  <div [id]="job.id | prefix:'job-'" class="row">
+    <div class="col-sm-1"><img class="card small" [id]="job.id | prefix:'image-'" [src]="job.companyLogo" alt=""/>
+    </div>
+    <div class="col-sm-11">
+      <h1>{{ job.companyName }} - {{ job.title }}</h1>
+      @for (type of job.types; track job.id) {
+        <div inert class="button primary circular">{{ type }}</div>
+      }
+      @for (industry of job.industries; track job.id) {
+        <div inert class="button primary circular">{{ industry }}</div>
+      }
+    </div>
+  </div>
+  <p><strong>Published date:</strong> {{ job.publishDate | date: 'shortDate' }}</p>
+  <p><strong>Location:</strong> {{ job.location }}</p>
+  <p><strong>Reference:</strong> {{ job.reference }}</p>
+  <p><strong>Description:</strong></p>
+  <div [innerHTML]="job.description"></div>
+</div>

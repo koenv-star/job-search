@@ -5,6 +5,7 @@ import { Job } from '../jobs.service';
 import { By } from '@angular/platform-browser';
 import { FavoritesOverviewService } from '../favorites-overview.service';
 import { signal, WritableSignal } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FavoritesComponent', () => {
   let component: FavoriteOverviewComponent;
@@ -14,7 +15,7 @@ describe('FavoritesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FavoriteOverviewComponent],
+      imports: [FavoriteOverviewComponent, RouterTestingModule],
       providers: [
         {
           provide: FavoritesOverviewService, useValue: {

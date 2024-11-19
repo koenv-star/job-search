@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
 import { jobDetailResolver } from './job-detail.resolver';
-import { JobDetail, JobDetailService } from './job-detail.service';
 import { of } from 'rxjs';
+import { JobDetail, JobDetailService } from '../job-detail.service';
 
 describe('jobDetailResolver', () => {
   const executeResolver: ResolveFn<JobDetail> = (...resolverParameters) =>

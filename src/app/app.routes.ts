@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { JobOverviewComponent } from './job-overview/job-overview.component';
 import { FavoriteOverviewComponent } from './favorite-overview/favorite-overview.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
-import { jobDetailResolver } from './job-detail.resolver';
+import { jobDetailResolver } from './job-detail/job-detail.resolver';
 
 export const routes: Routes = [
   {path: 'jobs', component: JobOverviewComponent},

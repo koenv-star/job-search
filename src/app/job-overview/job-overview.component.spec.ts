@@ -15,7 +15,7 @@ describe('JobOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JobOverviewComponent, RouterTestingModule,],
+      imports: [JobOverviewComponent, RouterTestingModule],
       providers: [
         {
           provide: JobsService, useValue: {
