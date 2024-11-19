@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
     DatePipe
   ],
   templateUrl: './job-detail.component.html',
-  styleUrl: './job-detail.component.css',
+  styles: '',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JobDetailComponent {
