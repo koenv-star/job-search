@@ -20,7 +20,7 @@ describe('FavoritesService', () => {
   });
 
   it('should initialize to map with al job ids default to false', () => {
-    const jobs = [{ id: 1 }, { id: 2 }] as Job[];
+    const jobs = [{id: 1}, {id: 2}] as Job[];
 
     service.initializeFavorites(jobs);
 
@@ -30,6 +30,5 @@ describe('FavoritesService', () => {
     ]);
     expect(service.favorites()).toEqual(expectedMap);
   });
-
 
 });

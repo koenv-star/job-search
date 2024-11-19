@@ -6,11 +6,8 @@ import { Job } from './jobs.service';
 })
 export class FavoritesService {
 
-  _favorites: WritableSignal<Map<number, boolean>> = signal(new Map<number, boolean>())
+  private readonly _favorites: WritableSignal<Map<number, boolean>> = signal(new Map<number, boolean>())
   favorites: Signal<Map<number, boolean>> = this._favorites.asReadonly()
-
-  constructor() {
-  }
 
   toggleFavorite(id: number): void {
     this._favorites.update(favorites => {

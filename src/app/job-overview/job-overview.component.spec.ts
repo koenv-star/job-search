@@ -33,9 +33,21 @@ describe('JobOverviewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the s', () => {
-    let job1: Job = {id: 1, title: 'title-1', companyLogo: 'logo-1', companyName: 'company-1', reference: 'reference-1'};
-    let job2: Job = {id: 2, title: 'title-2', companyLogo: 'logo-2', companyName: 'company-2', reference: 'reference-2'};
+  it('should render the jobs', () => {
+    let job1: Job = {
+      id: 1,
+      title: 'title-1',
+      companyLogo: 'logo-1',
+      companyName: 'company-1',
+      reference: 'reference-1'
+    };
+    let job2: Job = {
+      id: 2,
+      title: 'title-2',
+      companyLogo: 'logo-2',
+      companyName: 'company-2',
+      reference: 'reference-2'
+    };
 
     jobs.set([job1, job2])
     fixture.detectChanges();
