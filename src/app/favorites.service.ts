@@ -15,11 +15,7 @@ export class FavoritesService {
   favorites: Signal<Set<number>> = this._favorites.asReadonly()
 
   constructor() {
-    effect(() => {
-      if (this.favorites()) {
-        this.storageService.set(this.favorites())
-      }
-    });
+    effect(() => this.storageService.set(this.favorites()));
   }
 
   toggleFavorite(id: number): void {
