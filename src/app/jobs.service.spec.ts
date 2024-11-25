@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Job, JobsService } from './jobs.service';
-import { FavoritesService } from './favorites.service';
 
 describe('JobsService', () => {
   let service: JobsService;
@@ -10,9 +9,7 @@ describe('JobsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [JobsService, {
-        provide: FavoritesService, useValue: jasmine.createSpyObj('FavoritesService', ['initializeFavorites'])
-      }],
+      providers: [JobsService],
     });
 
     service = TestBed.inject(JobsService);

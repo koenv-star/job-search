@@ -7,7 +7,7 @@ import { FavoritesService } from './favorites.service';
 })
 export class FavoritesOverviewService {
 
-  favoritesOverview: Signal<Job[]> = computed(() => this.jobService.jobs().filter(job => this.favoritesService.favorites()?.get(job.id)))
+  favoritesOverview: Signal<Job[]> = computed(() => this.jobService.jobs().filter(job => this.favoritesService.favorites().has(job.id)))
 
   constructor(private readonly jobService: JobsService, private readonly favoritesService: FavoritesService) {
   }

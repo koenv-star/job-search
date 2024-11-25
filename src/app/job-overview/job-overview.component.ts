@@ -20,12 +20,9 @@ import { ToggleFavoriteDirective } from '../toggle-favorite.directive';
 export class JobOverviewComponent {
 
   protected jobs: Signal<Job[]> = this.jobsService.jobs
-  protected favorites: Signal<Map<number, boolean> | undefined> = this.favoritesService.favorites
+  protected favorites: Signal<Set<number>> = this.favoritesService.favorites
 
   constructor(protected jobsService: JobsService, protected favoritesService: FavoritesService) {
   }
 
-  toggleFavorite(id: number) {
-    this.favoritesService.toggleFavorite(id);
-  }
 }

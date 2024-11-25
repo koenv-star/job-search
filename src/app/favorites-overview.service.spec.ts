@@ -8,7 +8,7 @@ import { FavoritesService } from './favorites.service';
 describe('FavoritesOverviewService', () => {
   let service: FavoritesOverviewService;
   let jobs: WritableSignal<Job[]> = signal([])
-  let favorites: WritableSignal<Map<number, boolean>> = signal(new Map())
+  let favorites: WritableSignal<Set<number>> = signal(new Set())
 
   let job1: Job = {
     id: 1,
@@ -48,7 +48,7 @@ describe('FavoritesOverviewService', () => {
     })
     service = TestBed.inject(FavoritesOverviewService);
     jobs.set([])
-    favorites.set(new Map<number, boolean>())
+    favorites.set(new Set<number>())
   });
 
   it('should be created', () => {
@@ -60,32 +60,10 @@ describe('FavoritesOverviewService', () => {
     let favoriteJob: Job = job2
 
     jobs.set([job1, favoriteJob, job3,])
-    favorites.set(new Map([[job1.id, false], [favoriteJob.id, true], [job3.id, false]]))
+    favorites.set(new Set([favoriteJob.id]))
 
     const favoriteJobs = service.favoritesOverview();
     expect(favoriteJobs).toEqual([favoriteJob]);
-  });
-
-  it('should not fail on inconsistent state, missing job in favorites, e.g api returns additional jobs', () => {
-    let jobMissingInFavorites: Job = job2
-    let favorite: Job = job3
-
-    jobs.set([job1, jobMissingInFavorites, favorite,])
-    favorites.set(new Map([[job1.id, false], [favorite.id, true]]))
-
-    const favoriteJobs = service.favoritesOverview();
-    expect(favoriteJobs).toEqual([favorite]);
-  });
-
-  it('should not fail on inconsistent state, job in favorites not in jobs, e.g jobs removed in api', () => {
-    let jobOnlyInFavorites: Job = job2
-    let favorite: Job = job3
-
-    jobs.set([job1, favorite])
-    favorites.set(new Map([[job1.id, false], [jobOnlyInFavorites.id, true], [favorite.id, true]]))
-
-    const favoriteJobs = service.favoritesOverview();
-    expect(favoriteJobs).toEqual([favorite]);
   });
 })
 ;

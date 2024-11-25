@@ -20,7 +20,7 @@ export class ToggleFavoriteDirective {
 
   @HostBinding('class.active')
   get isFavorite() {
-    return !!this.favoritesService.favorites()?.get(this.id)
+    return this.favoritesService.favorites().has(this.id)
   }
 
 }
